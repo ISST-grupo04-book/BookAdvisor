@@ -1,0 +1,16 @@
+.card_image{
+    height: 14vw;
+    object-fit: cover;
+}
+.card_overlay{
+    height: 14vw;
+}
+.card_title{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-weight: 300;
+    font-size: 1.3rem;
+}
+.card_button{
+    background-color: rgb(119, 93, 255);
+}

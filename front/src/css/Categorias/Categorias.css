@@ -1,0 +1,159 @@
+#cat{
+    margin-top: 50px;
+}
+#button1{
+    background: url(../../img/narrativa.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color:white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button2{
+    background: url(../../img/nofinccion.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button3{
+    background: url(../../img/poesia.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button4{
+    background: url(../../img/comic.jpg) no-repeat 50% 10% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+#button5{
+    background: url(../../img/juvenil.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button6{
+    background: url(../../img/clasicos.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button7{
+    background: url(../../img/novnegra.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button8{
+    background: url(../../img/politica.jpg) no-repeat 50% 65% rgb(119, 93, 255);
+    border-color: white;
+    border-radius: 8px;
+
+    height: 120px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: xx-large;
+}
+#button9{
+    background-color: rgb(119, 93, 255);
+    border-color: rgb(119, 93, 255);
+    border-radius: 8px;
+
+    height: 70px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: larger;
+}
+#button10{
+    background-color: rgb(119, 93, 255);
+    border-color: rgb(119, 93, 255);
+    border-radius: 8px;
+
+    height: 70px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: larger;;
+}
+#button11{
+    background-color: rgb(119, 93, 255);
+    border-color: rgb(119, 93, 255);
+    border-radius: 8px;
+
+    height: 70px;
+    width: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+
+    font-weight: bold;
+    font-size: larger;
+}
+#button12{
+    background-color: rgb(119, 93, 255);
+    border-color: rgb(119, 93, 255);
+    border-radius: 8px;
+
+    height: 70px;
+    width: 270px;
+    margin-top: 20px;
+
+    font-weight: bold;
+    font-size: larger;
+}

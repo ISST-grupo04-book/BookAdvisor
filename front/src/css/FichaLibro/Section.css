@@ -1,0 +1,28 @@
+.book_title{
+    font-size: 2.2rem;
+    font-weight: 400;
+
+}
+.book_badge{
+    background-color: rgb(119, 93, 255);
+    width: 6rem;
+    height: 1.6rem;
+    font-size: 1rem;
+    font-weight: 200;
+}
+.book_description{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.edit__button{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(119, 93, 255);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: 200;
+}
