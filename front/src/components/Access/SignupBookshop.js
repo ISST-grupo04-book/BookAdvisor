@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, BrowserRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import '../../css/pseudoElement.css';
 
 export default class Bookshop extends React.Component {
@@ -41,9 +41,10 @@ export default class Bookshop extends React.Component {
 
           <input className="p-2 w-100 font-weight-light rounded button__hover" style={styles.input__submit} type="submit" value="Registrarse"/>
         </form>
-        <BrowserRouter>
-        <Link className="my-3 link__hover" style={styles.link} key="key2" to="/login">Iniciar sesión</Link>
-        </BrowserRouter>
+        <div className="w-100 d-flex justify-content-between align-items-center">
+          <Link className="my-3 link__hover" style={styles.link} key="key2" to="/login">Iniciar sesión</Link>
+          <Link className="my-3 link__hover" style={styles.link} key="key2" to="/">Inicio</Link>
+        </div>
       </div>
     );
   }

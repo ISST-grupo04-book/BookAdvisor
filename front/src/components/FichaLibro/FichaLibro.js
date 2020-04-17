@@ -3,13 +3,16 @@ import Aside from './Aside.js';
 import Article from './Article.js';
 import Exchange from './Exchange.js';
 import {Container,Row,Col} from 'react-bootstrap';
-import '../../css/FichaLibro/FichaLibro.css';
-
 
 export default class FichaLibro extends React.Component {
   render(){
+    const styles = {
+      main : {
+          backgroundColor: '#fcfcfc'
+      } 
+    }
     return (
-      <main className="FichaLibro">
+      <main style={styles.main}>
         <Container className="my-0 py-5 px-0">
           <Row className="mx-0">
             <Col xs={4} className="px-0">
@@ -30,3 +33,5 @@ export default class FichaLibro extends React.Component {
     );
   }
 }
+
+

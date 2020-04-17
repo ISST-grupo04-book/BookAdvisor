@@ -3,3 +3,10 @@
     margin-top: 25px;
     margin-left: 15px;
 }
+.linklibros{
+    text-decoration: none !important;
+    color: black !important;
+}
+.listaLibros:hover{
+    text-decoration: none !important;
+}

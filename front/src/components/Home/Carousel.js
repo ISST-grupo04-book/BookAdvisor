@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Container,Row,Col, Button, Carousel, Image} from 'react-bootstrap';
 import '../../css/Home/Carousel.css';
 
@@ -11,6 +12,7 @@ export default class Center extends React.Component{
 
             <Carousel className = "carousel">
             <Carousel.Item>
+              <Link to='/book'>
               <Image
                 className="picture1"
                 src="img/señoranillos.jpeg"
@@ -18,7 +20,7 @@ export default class Center extends React.Component{
                 width = "750px"
                 height = "350px"
               />
-
+            </Link>
               <Carousel.Caption>
                 <h1>EL SEÑOR DE LOS ANILLOS</h1>
               </Carousel.Caption>

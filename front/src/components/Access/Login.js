@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, BrowserRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import '../../css/pseudoElement.css';
 import '../../css/Access/Login.css';
 
@@ -38,9 +38,10 @@ export default class Login extends React.Component {
           </div>
           <input className="p-2 w-100 font-weight-light rounded button__hover" style={styles.input__submit} type="submit" value="Iniciar sesión"/>
         </form>
-        <BrowserRouter>
+        <div className="w-100 d-flex justify-content-between align-items-center">
         <Link className="my-4 link__hover" style={styles.link} key="key2" to="/signup">Registrarse</Link>
-        </BrowserRouter>
+        <Link className="my-4 link__hover" style={styles.link} key="key3" to="/">Inicio</Link>
+        </div>
       </div>
     );
   }

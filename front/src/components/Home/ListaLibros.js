@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Row, Col, Card } from 'react-bootstrap';
 import '../../css/Home/ListaLibros.css';
 
@@ -10,12 +11,14 @@ export default class ListaLibros extends React.Component {
 
             <Row>
             <Col>
-                <Card style={{ width: '200px' }}>
-                    <Card.Img variant="top" src="img/book.jpg" height="200px" width="200px" />
-                    <Card.Body>
-                        <Card.Title>El señor de los anillos</Card.Title>
-                    </Card.Body>
-                </Card>
+                <Link to="/book" className="linklibros">
+                    <Card style={{ width: '200px' }}>
+                        <Card.Img variant="top" src="img/book.jpg" height="200px" width="200px" />
+                        <Card.Body>
+                            <Card.Title>El señor de los anillos</Card.Title>
+                        </Card.Body>
+                    </Card>
+                </Link>
             </Col>
 
             <Col>
