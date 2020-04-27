@@ -4,3 +4,21 @@
 .link__hover:hover{
     color: black !important;
 }
+.aside__hover:hover{
+    font-weight: bold !important;
+    color: rgb(100, 70, 255) !important;
+}
+.aside__focus[tabindex]:focus{
+    font-weight: bold !important;
+    color: rgb(100, 70, 255) !important;
+    outline: none !important;
+}
+.linkProfile__hover:hover{
+    box-shadow: 0px 0px 10px rgba(119, 93, 255,.4);
+}
+.buttonProfile__hover:hover{
+    box-shadow: 0px 0px 10px rgba(250, 66, 66, 0.6);
+}
+.buttonProfile__focus:focus{
+    outline:0;
+}

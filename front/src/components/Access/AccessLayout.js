@@ -8,7 +8,7 @@ import SignupEditorial from './SignupEditorial.js';
 
 import {Container,Row,Col,Image} from 'react-bootstrap';
 
-export default class Login_layout extends React.Component {
+export default class Access_layout extends React.Component {
   render(){
     const styles = {
       main : {

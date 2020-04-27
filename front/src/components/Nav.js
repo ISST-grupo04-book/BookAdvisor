@@ -14,7 +14,7 @@ export default class Navigator extends React.Component {
             <Navbar className="navbar--color" expand="lg">
                 <Link to="/">
                     <Navbar.Brand className="text-white p-0 navbar__bran">
-                        <Image className="d-inline-block align-top mr-1 navbar__brand_img" src="img/logo.png" alt="Logo"/>
+                        <Image className="d-inline-block align-top mr-1 navbar__brand_img" src="/img/logo.png" alt="Logo"/>
                         BookAdvisor
                     </Navbar.Brand>
                 </Link>
