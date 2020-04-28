@@ -15,6 +15,9 @@ public class Usuario implements Serializable{
 	private String username;
 	private String nombre;
 	private int telefono;
+	
+	
+	@ManyToOne
 	private Localizacion IDlocalizacion;
 
 

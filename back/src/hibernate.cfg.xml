@@ -28,5 +28,6 @@
 		<mapping class="es.upm.dit.isst.bookadvisor.model.FormatoLibro" />
 		<mapping class="es.upm.dit.isst.bookadvisor.model.Oferta" />
 		<mapping class="es.upm.dit.isst.bookadvisor.model.TipoBiblioteca" />
+		<mapping class="es.upm.dit.isst.bookadvisor.model.Reedicion" />
 	</session-factory>
 </hibernate-configuration>

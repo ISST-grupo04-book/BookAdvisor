@@ -18,6 +18,9 @@ public class Editorial implements Serializable{
 	@OneToMany(mappedBy = "CIFEditorial", fetch = FetchType.EAGER)
 	private Collection<Libro> libros;
 	
+	@OneToMany(mappedBy = "CIFEditorial", fetch = FetchType.EAGER)
+	private Collection<Reedicion> reedicion;
+	
 	public Editorial() {
 		
 	}
@@ -25,6 +28,7 @@ public class Editorial implements Serializable{
 	public int getCIF() {
 		return CIF;
 	}
+
 
 	public void setCIF(int cIF) {
 		CIF = cIF;
@@ -68,6 +72,14 @@ public class Editorial implements Serializable{
 
 	public void setLibros(Collection<Libro> libros) {
 		this.libros = libros;
+	}
+	
+	public Collection<Reedicion> getReedicion() {
+		return reedicion;
+	}
+
+	public void setReedicion(Collection<Reedicion> reedicion) {
+		this.reedicion = reedicion;
 	}
 	
 }

@@ -42,6 +42,9 @@ public class Libro implements Serializable{
 	@OneToMany(mappedBy = "ISBN", fetch = FetchType.EAGER)
 	private Collection<LibroBiblioteca> librobiblioteca;
 	
+	@OneToMany(mappedBy = "ISBN", fetch = FetchType.EAGER)
+	private Collection<Reedicion> reedicion;
+	
 	public Libro() {
 		
 	}
