@@ -14,6 +14,8 @@ public class Biblioteca implements Serializable{
 	private String pwd;
 	private String nombre;
 	private String URL;
+	
+	@ManyToOne
 	private Localizacion IDlocalizacion;
 
 

@@ -14,6 +14,7 @@ public class Oferta implements Serializable{
 	@Lob
 	private String descripcion;
 
+	@ManyToOne
 	private Libreria CIF;
 	
 	public Oferta() {

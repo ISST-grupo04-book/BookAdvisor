@@ -14,6 +14,8 @@ public class Comentario implements Serializable{
 	@Lob
 	private String contenido;
 	
+	private int valoracion;
+	
 	@ManyToOne
 	private Usuario IDUsuario;
 	
@@ -54,6 +56,13 @@ public class Comentario implements Serializable{
 
 	public void setISBN(Libro iSBN) {
 		ISBN = iSBN;
+	}
+	public int getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(int Valoracion) {
+		valoracion = Valoracion;
 	}
 
 }	

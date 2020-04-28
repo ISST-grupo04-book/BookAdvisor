@@ -18,6 +18,8 @@ public class LibroLibreria implements Serializable{
 	@ManyToOne
 	private Libro ISBN;
 	
+	private double precio;
+	
 	public LibroLibreria() {
 		
 	}
@@ -44,6 +46,14 @@ public class LibroLibreria implements Serializable{
 
 	public void setISBN(Libro iSBN) {
 		ISBN = iSBN;
+	}
+	
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double Precio) {
+		precio = Precio;
 	}
 	
 }
