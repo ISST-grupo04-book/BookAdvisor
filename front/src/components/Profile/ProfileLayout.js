@@ -3,6 +3,7 @@ import {Container,Row,Col} from 'react-bootstrap';
 import AsideProfile from './AsideProfile';
 import SectionProfile from './SectionProfile';
 import SectionMybooks from './SectionMybooks';
+import AddBook from './AddBook';
 
 export default class ProfileLayout extends React.Component {
   render(){
@@ -45,7 +46,7 @@ export default class ProfileLayout extends React.Component {
         view = <SectionMybooks bookList={bookList}/>
         break;
       case "Add_book":
-        view = null
+        view = <AddBook/>
         break;
       default:
           view = <SectionProfile/>
