@@ -29,7 +29,7 @@ export default class Exchange extends React.Component {
         <Container fluid className="pt-5 px-0">
             <CardGroup>
                 <Card>
-                    <Card.Img variant="top" style={styles.card__image} src="img/bookShop.jpg" />
+                    <Card.Img variant="top" style={styles.card__image} src="/img/bookShop.jpg" />
                     <Card.ImgOverlay className="p-0 d-flex align-items-end" style={styles.card__overlay}>
                         <Card.Title className="m-0 p-4 w-100 text-left" style={styles.card__title}>LIBRERÍAS</Card.Title>
                     </Card.ImgOverlay>
@@ -44,7 +44,7 @@ export default class Exchange extends React.Component {
                     </Card.Body>
                 </Card>
                 <Card>
-                    <Card.Img variant="top" style={styles.card__image} src="img/library.jpg" />
+                    <Card.Img variant="top" style={styles.card__image} src="/img/library.jpg" />
                     <Card.ImgOverlay className="p-0 d-flex align-items-end" style={styles.card__overlay}>
                         <Card.Title className="m-0 p-4 w-100 text-left" style={styles.card__title}>BIBLIOTECAS</Card.Title>
                     </Card.ImgOverlay>
@@ -57,7 +57,7 @@ export default class Exchange extends React.Component {
                     </Card.Body>
                 </Card>
                 <Card>
-                    <Card.Img variant="top" style={styles.card__image} src="img/exchange.jpg" />
+                    <Card.Img variant="top" style={styles.card__image} src="/img/exchange.jpg" />
                     <Card.ImgOverlay className="p-0 d-flex align-items-end" style={styles.card__overlay}>
                         <Card.Title className="m-0 p-4 w-100 text-left" style={styles.card__title}>INTERCAMBIOS</Card.Title>
                     </Card.ImgOverlay>

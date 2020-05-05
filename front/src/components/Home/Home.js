@@ -6,13 +6,26 @@ import Center from './Carousel';
 import ListaLibros from './ListaLibros';
 
 export default class Home extends React.Component{
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+        listBooks : {},
+    } 
+  };
+
+  async componentDidMount(){
+    const listBooks = await this.props.getFetch("AllBooksServlet")
+    this.setState({listBooks:listBooks});
+  }
+
     render(){
         return (
           <main className="Home">
             <Container className="my-0 py-5 px-0">
                 <Row>
                 <Col>
-                <Center/>          
+                <Center listBooks={this.state.listBooks}/>          
                 </Col>
 
                 <Col>  
@@ -21,7 +34,7 @@ export default class Home extends React.Component{
                 </Row>
 
                 <Row>
-                    <ListaLibros/>
+                    <ListaLibros listBooks={this.state.listBooks}/>
                 </Row>
             </Container>
           </main>

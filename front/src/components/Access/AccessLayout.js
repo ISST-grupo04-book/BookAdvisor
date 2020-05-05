@@ -5,6 +5,7 @@ import SignupUser from './SignupUser.js';
 import SignupLibrary from './SignupLibrary.js';
 import SignupBookshop from './SignupBookshop.js';
 import SignupEditorial from './SignupEditorial.js';
+import NewPassword from './NewPassword.js';
 
 import {Container,Row,Col,Image} from 'react-bootstrap';
 
@@ -39,9 +40,11 @@ export default class Access_layout extends React.Component {
 
     let view = null;
     switch (this.props.name) {
+      case "Psd":
+        view = <NewPassword/>
+        break;
       case "User":
         view = <SignupUser/>
-        console.log("user");
         break;
       case "Library":
         view = <SignupLibrary/>
@@ -56,7 +59,7 @@ export default class Access_layout extends React.Component {
         if (this.props.view === "Signup"){
           view = <Signup/>
         }else{
-          view = <Login/>
+          view = <Login postFetch={this.props.postFetch}/>
         }
         break;
     }

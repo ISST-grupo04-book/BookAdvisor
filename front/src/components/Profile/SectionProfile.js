@@ -3,6 +3,23 @@ import {Link} from 'react-router-dom'
 import '../../css/pseudoElement.css';
 
 export default class SectionProfile extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+      }
+    
+
+      handleDelete = () => {
+        if(window.confirm("¿Estás seguro de querer eliminar tu cuenta? Una vez borrado no se podrá recuperar")){
+            // fetch con delete
+            
+        }
+
+      }
+      
+
   render(){
     const styles = {
         section__wrapper : {
@@ -40,8 +57,9 @@ export default class SectionProfile extends React.Component {
                     </div>
                     <h4 className="my-4 font-weight-normal">Tipo de perfil: <p className='d-inline'>Usuario</p></h4>
                     <div className='d-flex justify-content-end align-items-center'>
-                        <Link className='mr-3 p-2  text-center rounded linkProfile__hover' style={styles.link}>Cambiar contraseña</Link>
-                        <button className='p-2 font-weight-light rounded buttonProfile__hover buttonProfile__focus' style={styles.button} >Eliminar cuenta</button>
+                        <Link className='mr-3 p-2  text-center rounded linkProfile__hover' style={styles.link} to="/signup/newPassword">Cambiar contraseña</Link>
+                        <button className='p-2 font-weight-light rounded buttonProfile__hover buttonProfile__focus' 
+                        style={styles.button} onClick={() => this.handleDelete()}>Eliminar cuenta</button>
                     </div>
                 </form>
             </div>

@@ -3,6 +3,15 @@ import Mybooks from './Mybooks'
 import '../../css/pseudoElement.css';
 
 export default class SectionMybooks extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+      }
+    
+      handleDelete = () => {}
+      
   render(){
     const {bookList} = this.props;
     return (
@@ -12,7 +21,7 @@ export default class SectionMybooks extends React.Component {
                 {
                 this.props.bookList.length > 0 ?
                     bookList.map((book,index)=>{
-                        return <Mybooks key={index} name={book.name} disponible={book.disponible} img={book.image}/>
+                        return <Mybooks key={index} name={book.name} disponible={book.disponible} img={book.image} delete={this.handleDelete}/>
                     }) 
                     : null
                 }

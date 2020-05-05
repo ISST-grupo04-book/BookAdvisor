@@ -10,52 +10,19 @@ export default class ListaLibros extends React.Component {
             <h4>Libros más buscados</h4>
 
             <Row>
-            <Col>
-                <Link to="/book" className="linklibros">
-                    <Card style={{ width: '200px' }}>
-                        <Card.Img variant="top" src="img/book.jpg" height="200px" width="200px" />
-                        <Card.Body>
-                            <Card.Title>El señor de los anillos</Card.Title>
-                        </Card.Body>
-                    </Card>
-                </Link>
-            </Col>
-
-            <Col>
-                <Card style={{ width: '200px' }}>
-                    <Card.Img variant="top" src="img/memorias-de-adriano.jpg" height="200px" width="200px" />
-                    <Card.Body>
-                        <Card.Title>Memorias de Adriano</Card.Title>
-                    </Card.Body>
-                </Card>
-            </Col>
-
-            <Col>
-                <Card style={{ width: '200px' }}>
-                    <Card.Img variant="top" src="img/lafrontera.jpg" height="200px" width="200px" />
-                    <Card.Body>
-                        <Card.Title>La frontera</Card.Title>
-                    </Card.Body>
-                </Card>
-            </Col>
-
-            <Col>
-                <Card style={{ width: '200px' }}>
-                    <Card.Img variant="top" src="img/codigodavinci.jpg" height="200px" width="200px" />
-                    <Card.Body>
-                        <Card.Title>El código Da Vinci</Card.Title>
-                    </Card.Body>
-                </Card>
-            </Col>
-
-            <Col>
-                <Card style={{ width: '200px' }}>
-                    <Card.Img variant="top" src="img/harrypotter.jpg" height="200px" width="200px" />
-                    <Card.Body>
-                        <Card.Title>Harry Potter y la piedra filosofal</Card.Title>
-                    </Card.Body>
-                </Card>
-            </Col>
+                {Array.from(this.props.listBooks).map((book,index)=>{
+                    const {ISBN,titulo,foto,} = book
+                    return <Col key={index}>
+                            <Link to={"/book/"+ISBN} className="linklibros">
+                                <Card style={{ width: '200px' }}>
+                                    <Card.Img variant="top" src={foto} height="200px" width="200px" />
+                                    <Card.Body>
+                                        <Card.Title>{titulo}</Card.Title>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                           </Col>  
+                 })}
             </Row>
             </div>
         );

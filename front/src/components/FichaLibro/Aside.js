@@ -30,7 +30,7 @@ export default class Aside extends React.Component {
             <Container fluid className="px-0 mx-0">
                 <Row className="mx-0 mb-2">
                     <Col className="px-0">
-                        <Image className="w-100 h-100" src="img/book.jpg" alt="Book Image"/>
+                        <Image className="w-100 h-100" src={this.props.book.foto} alt="Book Image"/>
                     </Col>
                 </Row>
                 <Row className="mx-0 mb-4">
@@ -41,25 +41,25 @@ export default class Aside extends React.Component {
                 <Row className="mx-0 mb-2">
                     <Col className="px-0 d-flex align-items-center">
                         <p className="mb-0 mr-2 py-1 text-center rounded" style={styles.description__box}>ISBN</p>
-                        <p className="my-0 d-block text-center" style={styles.description__text}>9788445003022</p>
+                        <p className="my-0 d-block text-center" style={styles.description__text}>{this.props.book.ISBN}</p>
                     </Col>
                 </Row>
                 <Row className="mx-0 mb-2">
                     <Col className="px-0 d-flex align-items-center">
                         <p className="mb-0 mr-2 py-1 text-center rounded" style={styles.description__box}>E</p>
-                        <p className="my-0 d-block text-center" style={styles.description__text}>Minotauro</p>
+                        <p className="my-0 d-block text-center" style={styles.description__text}>{this.props.book.editorial}</p>
                     </Col>
                 </Row>
                 <Row className="mx-0 mb-2">
                     <Col className="px-0 d-flex align-items-center">
                         <p className="mb-0 mr-2 py-1 text-center rounded" style={styles.description__box}>ED</p>
-                        <p className="my-0 d-block text-center" style={styles.description__text}>3ª Edición</p>
+                        <p className="my-0 d-block text-center" style={styles.description__text}>{this.props.book.edicion}</p>
                     </Col>
                 </Row>
                 <Row className="mx-0">
                     <Col className="px-0 d-flex align-items-center">
                         <p className="mb-0 mr-2 py-1 text-center rounded" style={styles.description__box}>F</p>
-                        <p className="my-0 d-block text-center" style={styles.description__text}>Físico, tapa blanda</p>
+                        <p className="my-0 d-block text-center" style={styles.description__text}>{this.props.book.formato}</p>
                     </Col>
                 </Row>
             </Container>

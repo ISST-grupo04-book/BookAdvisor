@@ -6,6 +6,19 @@ import SectionMybooks from './SectionMybooks';
 import AddBook from './AddBook';
 
 export default class ProfileLayout extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  
+  componentDidMount(){
+    //fetch get con los datos del user
+    //Cambiar a json
+    //meterlo en el state
+  }
+
   render(){
 
     //Prueba. Borrar luego

@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import React, { Fragment } from 'react';
+import {BrowserRouter as Router,Switch,Route,useParams} from "react-router-dom";
 import FichaLibro from './FichaLibro/FichaLibro';
 import Home from './Home/Home';
 import Categorias from './Categorias/Categorias';
@@ -10,10 +10,43 @@ import '../css/App.css';
 
 
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        user : {},
+        res : ""
+    } 
+  };
+
+  getFetch = async(servlet="",query="") => {
+    const URI = "http://localhost:8080/BookAdvisor/";    
+    const petition = await fetch(URI+servlet+query);
+    const petitionJson = await (petition.json());
+    const parseJson = await JSON.parse(petitionJson);
+    return parseJson;
+  }
+
+  postFetch = async(servlet="",data) => {
+    const URI = "http://localhost:8080/BookAdvisor/"; 
+    const headers = { 'Content-Type': 'application/json' }
+    let myInit = { method: 'POST',
+               headers: headers,
+               body: JSON.stringify(data)
+              };
+    
+    const response = await fetch(URI+servlet,myInit);
+    const responseJson = await response.json();
+    this.setState({res:responseJson});
+  }
+
   render(){
     return (
         <Router>
             <Switch>
+              <Route path="/signup/newPassword">
+                <Access view="Signup" name="Psd"/>
+              </Route>
               <Route path="/signup/user">
                 <Access view="Signup" name="User" />
               </Route>
@@ -45,12 +78,10 @@ export default class App extends React.Component {
                 <Nav/>
                 <Categorias/>
               </Route>
-              <Route path="/book">
-                <Nav/>
-                <FichaLibro />
+              <Route path="/book/:ISBN" render={(props) => <FichaLibro {...props}  getFetch={this.getFetch}/>}>
               </Route>
               <Route path="/login">
-                <Access/>
+                <Access postFetch={this.postFetch}/>
               </Route>
               <Route path="/profile">
                 <Nav/>
@@ -58,7 +89,7 @@ export default class App extends React.Component {
               </Route>
               <Route path="/">
                 <Nav/>
-                <Home/>
+                <Home getFetch={this.getFetch}/>
               </Route>
             </Switch>
         </Router>

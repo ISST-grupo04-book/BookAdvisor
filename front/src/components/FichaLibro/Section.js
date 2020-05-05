@@ -1,9 +1,31 @@
 import React from 'react';
 import {Row,Col,Badge} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import '../../css/pseudoElement.css';
 
 export default class Section extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      valoracion: 4
+    } 
+  };
+
+  reviewStars(num) {
+    let stars = [];
+    for(let i= 0; i < num; i++) {
+      stars.push(<FontAwesomeIcon key={i}  style={{color:"orange"}}icon={faStar}/>);
+    }
+    for(let j = stars.length ; j < 5; j++) {
+      stars.push(<FontAwesomeIcon key={j+5} style={{color:"#b5b5b5"}}icon={faStar}/>);
+    }
+    return (
+      <span>{stars}</span>
+    );
+  };
+
   render(){
     const styles = {
       book__title : {
@@ -30,7 +52,15 @@ export default class Section extends React.Component {
         <React.Fragment>
             <Row className="mx-0">
               <Col className="px-0">
-                  <h1 style={styles.book__title}>El señor de los anillos</h1>
+                  <h1 style={styles.book__title}>{this.props.book.titulo}</h1>
+                  <h4 className="font-weight-normal">{this.props.book.autor}</h4>
+                  <h6 className="mt-3 font-weight-normal">Valoración media: {this.reviewStars(this.props.book.valoracion)}</h6>
+                  <h6 className="mt-3 font-weight-normal">Tu valoración: {this.reviewStars(this.state.valoracion)}
+                    <button className="ml-2 py-0 px-2 d-inline-block btn btn-outline-secondary" 
+                      onClick={() => this.setState({valoracion: this.state.valoracion >0 ? this.state.valoracion-1 : this.state.valoracion})}>-</button>
+                    <button className="ml-1 py-0 px-2 d-inline-block btn btn-outline-warning"
+                      onClick={() => this.setState({valoracion: this.state.valoracion <5 ? this.state.valoracion+1 : this.state.valoracion})}>+</button>
+                </h6>
               </Col>
             </Row>
             <Row className="mx-0 my-3">
@@ -41,9 +71,7 @@ export default class Section extends React.Component {
             </Row>
             <Row className="mx-0">
               <Col className="px-0">
-              <p style={styles.book__description}>El Señor de los Anillos (título original en inglés: The Lord of the Rings) es una novela de fantasía épica escrita por el filólogo y escritor británico J. R. R. Tolkien.
-                  Su historia se desarrolla en la Tercera Edad del Sol de la Tierra Media, un lugar ficticio poblado por hombres y otras razas antropomorfas como los hobbits, los elfos o los enanos, así como por muchas otras criaturas reales y fantásticas. La novela narra el viaje del protagonista principal, Frodo Bolsón, hobbit de la Comarca, para destruir el Anillo Único y la consiguiente guerra que provocará el enemigo para recuperarlo, ya que es la principal fuente de poder de su creador, el Señor oscuro Sauron.
-              </p>
+                <p style={styles.book__description}>{this.props.book.resena}</p>
               </Col>
             </Row>
             <Row className="mx-0">

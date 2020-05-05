@@ -24,7 +24,7 @@ export default class Library extends React.Component {
       }
     }
     return (
-    <div className="p-5 w-75 d-flex flex-column justify-content-start align-items-start bg-white" style={styles.library__wrapper}>
+    <div className="p-5 h-auto w-75 d-flex flex-column justify-content-start align-items-start bg-white" style={styles.library__wrapper}>
       <h2 className="mb-4 w-100 font-weight-normal">Registro de biblioteca</h2>
       <form className="w-100 h-100"action="#">
         <label className="w-100 font-weight-normal" for="name">Nombre de la biblioteca:</label><br/>
@@ -48,9 +48,9 @@ export default class Library extends React.Component {
 
         <input className="p-2 w-100 font-weight-light rounded button__hover" style={styles.input__submit} type="submit" value="Registrarse"/>
       </form> 
-      <div className="w-100 d-flex justify-content-between align-items-center">
-        <Link className="my-3 link__hover" style={styles.link} key="key2" to="/login">Iniciar sesión</Link>
-        <Link className="my-3 link__hover" style={styles.link} key="key3" to="/">Inicio</Link>
+      <div className="mt-3 w-100 d-flex justify-content-between align-items-center">
+        <Link className="link__hover" style={styles.link} key="key2" to="/login">Iniciar sesión</Link>
+        <Link className="link__hover" style={styles.link} key="key3" to="/signup">Atrás</Link>
       </div>
     </div>
     );

@@ -6,7 +6,7 @@ export default class Article extends React.Component {
   render(){
     return (
         <React.Fragment>
-            <Section/>
+            <Section  book={this.props.book}/>
         </React.Fragment>
     );
   }
