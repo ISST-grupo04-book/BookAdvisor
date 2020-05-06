@@ -80,6 +80,7 @@ export default class AddBook extends React.Component{
                 descripcion: this.state.descripcion.trim()
             }
         }
+        //fetch post !!!
     }
 
     render(){

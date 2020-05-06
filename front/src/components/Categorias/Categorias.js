@@ -1,9 +1,12 @@
 import React from 'react';
 import {Container,Row, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import '../../css/Categorias/Categorias.css';
+import './Narrativa/Narrativa';
 
 export default class Categorias extends React.Component{
     render(){
+
         return (
           <main className="Categorias">
             <Container>
@@ -11,7 +14,10 @@ export default class Categorias extends React.Component{
                   <h5 id="cat">Categorías</h5>
                 </Row>
                 <Row>
-                  <Button id="button1">Narrativa</Button>
+
+                <Link name="narrativa" to="/narrativa">  
+                <Button id="button1">Narrativa</Button>
+                </Link>
                   <Button id="button2">No ficción</Button>
                   <Button id="button3">Poesía</Button>
                   <Button id="button4">Cómic</Button>
@@ -35,6 +41,27 @@ export default class Categorias extends React.Component{
                   <Button id="button10">Recomendados</Button>
                   <Button id="button11">Novedades</Button>
                   <Button id="button12">Promociones</Button>
+                </Row>
+            </Container>
+
+            <Container>
+              <Row>
+                  <h5>Editoriales</h5>
+                </Row>
+
+              <Row>
+                  <Button id="button13">Reediciones</Button>
+                  <Button id="button13">Novedades</Button>
+                </Row>
+            </Container>
+
+            <Container>
+              <Row>
+                  <h5>Librerías</h5>
+                </Row>
+
+              <Row>
+                  <Button id="button14">Ofertas y Descuentos</Button>
                 </Row>
             </Container>
           </main>

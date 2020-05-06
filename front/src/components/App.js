@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Switch,Route,useParams} from "react-router-dom";
 import FichaLibro from './FichaLibro/FichaLibro';
 import Home from './Home/Home';
 import Categorias from './Categorias/Categorias';
+import Narrativa from './Categorias/Narrativa/Narrativa';
 import Access from './Access/AccessLayout';
 import Profile from './Profile/ProfileLayout';
 import Nav from './Nav';
@@ -31,6 +32,32 @@ export default class App extends React.Component {
     const URI = "http://localhost:8080/BookAdvisor/"; 
     const headers = { 'Content-Type': 'application/json' }
     let myInit = { method: 'POST',
+               headers: headers,
+               body: JSON.stringify(data)
+              };
+    
+    const response = await fetch(URI+servlet,myInit);
+    const responseJson = await response.json();
+    this.setState({res:responseJson});
+  }
+
+  putFetch = async(servlet="",data) => {
+    const URI = "http://localhost:8080/BookAdvisor/"; 
+    const headers = { 'Content-Type': 'application/json' }
+    let myInit = { method: 'PUT',
+               headers: headers,
+               body: JSON.stringify(data)
+              };
+    
+    const response = await fetch(URI+servlet,myInit);
+    const responseJson = await response.json();
+    this.setState({res:responseJson});
+  }
+
+  deleteFetch = async(servlet ="", data) => {
+    const URI = "http://localhost:8080/BookAdvisor/"; 
+    const headers = { 'Content-Type': 'application/json' }
+    let myInit = { method: 'DELETE',
                headers: headers,
                body: JSON.stringify(data)
               };
@@ -77,6 +104,10 @@ export default class App extends React.Component {
               <Route path="/categorias">
                 <Nav/>
                 <Categorias/>
+              </Route>
+              <Route path="/narrativa">
+                <Nav/>
+                <Narrativa/>
               </Route>
               <Route path="/book/:ISBN" render={(props) => <FichaLibro {...props}  getFetch={this.getFetch}/>}>
               </Route>
