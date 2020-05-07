@@ -5,6 +5,7 @@ import Home from './Home/Home';
 import Categorias from './Categorias/Categorias';
 import Access from './Access/AccessLayout';
 import Profile from './Profile/ProfileLayout';
+import Narrativa from './Categorias/Narrativa/Narrativa'
 import '../css/App.css';
 
 
@@ -13,6 +14,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        listBooks: [],
         user : null
     } 
   };
@@ -41,6 +43,9 @@ export default class App extends React.Component {
   changeAppState = (user)=>{
       this.setState({user})
   }
+  changeAppNarrativa = (listBooks)=>{
+    this.setState({listBooks})
+}
 
   render(){
     return (
@@ -55,11 +60,14 @@ export default class App extends React.Component {
               <Route path="/profile/my_books" render={(props) => <Profile {...props} user={this.state.user} name="My_books"/>}/>
               <Route path="/profile/add_book" render={(props) => <Profile {...props} user={this.state.user} name="Add_book"/>}/>
               <Route path="/signup" render={(props) => <Access {...props} view="Signup" postFetch={this.postFetch}/>}/>
-              <Route path="/categorias" render={(props) => <Categorias {...props} user={this.state.user} getFetch={this.getFetch}/>}/>
-              <Route path="/book/:ISBN" render={(props) => <FichaLibro {...props}  user={this.state.user} getFetch={this.getFetch}/>}/>
+              <Route path="/categorias/narrativa" render={(props) => <Narrativa {...props} user={this.state.user} getFetch={this.getFetch} listBooks={this.state.listBooks}/>}/>
+              <Route path="/categorias" render={(props) => <Categorias {...props} user={this.state.user} getFetch={this.getFetch} changeAppNarrativa={this.changeAppNarrativa}/>}/>
+              <Route path="/book/:ISBN" render={(props) => <FichaLibro {...props}  user={this.state.user} getFetch={this.getFetch} postFetch={this.postFetch}/>}/>
               <Route path="/login" render={(props) => <Access {...props} postFetch={this.postFetch} changeAppState={this.changeAppState}/>}/>
               <Route path="/profile" render={(props) => <Profile {...props} user={this.state.user} postFetch={this.postFetch}/>}/>
               <Route path="/" render={(props) => <Home {...props} user={this.state.user} getFetch={this.getFetch}/>}/>
+              
+              
             </Switch>
         </Router>
     );

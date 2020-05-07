@@ -35,7 +35,7 @@ export default class FichaLibro extends React.Component {
             </Col>
             <Col xs={1} />
             <Col xs={7} className="px-0">
-              <Article book={this.state.book}/>
+              <Article book1={this.state.book} user={this.props.user} history={this.props.history} postFetch={this.props.postFetch}/>
             </Col>
           </Row>
           <Row className="mx-0">

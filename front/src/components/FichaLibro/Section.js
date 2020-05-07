@@ -2,6 +2,7 @@ import React from 'react';
 import {Row,Col,Badge, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Comments from './Comments.js';
 import '../../css/pseudoElement.css';
 
 export default class Section extends React.Component {
@@ -57,10 +58,11 @@ export default class Section extends React.Component {
 
     }
     return (
+        
         <React.Fragment>
             <Row className="mx-0">
               <Col className="px-0">
-                  <h1 style={styles.book__title}>{this.props.book.titulo}</h1>
+                <h1 style={styles.book__title}>{this.props.book.titulo}</h1>
                   <h4 className="font-weight-normal">{this.props.book.autor}</h4>
                   <h6 className="mt-3 font-weight-normal">Valoración media: {this.reviewStars(4)}</h6>
                   <h6 className="mt-3 font-weight-normal">Tu valoración: {this.reviewStars(this.state.valoracion)}
@@ -86,6 +88,12 @@ export default class Section extends React.Component {
                 <Button className="p-2 w-100 h-100 d-block text-center rounded" style={styles.edit__button} disabled>Añadir Reedición</Button>
               </Col>
             </Row>
+            <Row className="mx-0">
+              <Col xs={12} className="px-0">
+                <Comments user={this.props.user} book={this.props.book} history={this.props.history} postFetch={this.props.postFetch}/>
+              </Col>
+            </Row>
+
         </React.Fragment>
     );
   }
