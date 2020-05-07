@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom';
 import '../../css/pseudoElement.css';
 import '../../css/Access/Login.css';
@@ -13,19 +14,40 @@ export default class Login extends React.Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     if(this.state.email.trim() === "" || this.state.psd === ""){
-        alert("Debe rellenar todos los campos para iniciar sesion");
+      Swal.fire({
+        icon: 'error',
+        title: 'Recuerda...',
+        text: 'Debe rellenar todos los campos para iniciar sesion.',
+        showConfirmButton: true,
+      })
     }else{
         let paramsToUpdate = {
             email : this.state.email.trim(),
-            psd : this.state.psd,
+            pwd : this.state.psd,
         }
-        this.props.postFetch("UserLoginServlet",paramsToUpdate)
-        console.log("enviado")
+        const res = await this.props.postFetch("UserLoginServlet",paramsToUpdate)
+        if (res.ID === "null"){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario o contraseña incorrecta, vuelva a intentarlo.'
+          })
+        }else{
+          this.props.changeAppState(res);
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión satisfactorio.',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.props.history.push("/");
+          }       
+        }
     }
-  }
+  
 
   handleChange = (e)=> {
     this.setState({[e.target.name] : e.target.value})

@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
-import {BrowserRouter as Router,Switch,Route,useParams} from "react-router-dom";
+import React from 'react';
+import {BrowserRouter as Router,Switch,Route,} from "react-router-dom";
 import FichaLibro from './FichaLibro/FichaLibro';
 import Home from './Home/Home';
 import Categorias from './Categorias/Categorias';
 import Access from './Access/AccessLayout';
 import Profile from './Profile/ProfileLayout';
-import Nav from './Nav';
 import '../css/App.css';
 
 
@@ -14,83 +13,53 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        user : {},
-        res : ""
+        user : null
     } 
   };
 
   getFetch = async(servlet="",query="") => {
     const URI = "http://localhost:8080/BookAdvisor/";    
     const petition = await fetch(URI+servlet+query);
-    const petitionJson = await (petition.json());
+    const petitionJson = await petition.json();
     const parseJson = await JSON.parse(petitionJson);
     return parseJson;
   }
 
   postFetch = async(servlet="",data) => {
     const URI = "http://localhost:8080/BookAdvisor/"; 
-    const headers = { 'Content-Type': 'application/json' }
-    let myInit = { method: 'POST',
-               headers: headers,
-               body: JSON.stringify(data)
-              };
+    let myInit = { method: "POST",
+                  body: JSON.stringify(data)
+                };
     
     const response = await fetch(URI+servlet,myInit);
     const responseJson = await response.json();
-    this.setState({res:responseJson});
+    const parseJson = await JSON.parse(responseJson);
+    return (parseJson);
+    
+  }
+
+  changeAppState = (user)=>{
+      this.setState({user})
   }
 
   render(){
     return (
         <Router>
             <Switch>
-              <Route path="/signup/newPassword">
-                <Access view="Signup" name="Psd"/>
-              </Route>
-              <Route path="/signup/user">
-                <Access view="Signup" name="User" />
-              </Route>
-              <Route path="/signup/library">
-                <Access view="Signup" name="Library" />
-              </Route>
-              <Route path="/signup/bookshop">
-                <Access view="Signup" name="Bookshop" />
-              </Route>
-              <Route path="/signup/editorial">
-                <Access view="Signup" name="Editorial" />
-              </Route>
-              <Route path="/profile/my_profile">
-                <Nav/>
-                <Profile name="My_profile"/>
-              </Route>
-              <Route path="/profile/my_books">
-                <Nav/>
-                <Profile name="My_books"/>
-              </Route>
-              <Route path="/profile/add_book">
-                <Nav/>
-                <Profile name="Add_book"/>
-              </Route>
-              <Route path="/signup">
-                <Access view="Signup"/>
-              </Route>
-              <Route path="/categorias">
-                <Nav/>
-                <Categorias/>
-              </Route>
-              <Route path="/book/:ISBN" render={(props) => <FichaLibro {...props}  getFetch={this.getFetch}/>}>
-              </Route>
-              <Route path="/login">
-                <Access postFetch={this.postFetch}/>
-              </Route>
-              <Route path="/profile">
-                <Nav/>
-                <Profile/>
-              </Route>
-              <Route path="/">
-                <Nav/>
-                <Home getFetch={this.getFetch}/>
-              </Route>
+              <Route path="/signup/newPassword" render={(props) => <Access {...props} view="Signup" name="Psd" postFetch={this.postFetch}/>}/>
+              <Route path="/signup/user" render={(props) => <Access {...props} view="Signup" name="User" postFetch={this.postFetch}/>}/>
+              <Route path="/signup/library" render={(props) => <Access {...props} view="Signup" name="Library" postFetch={this.postFetch}/>}/>
+              <Route path="/signup/bookshop" render={(props) => <Access {...props} view="Signup" name="Bookshop" postFetch={this.postFetch}/>}/>
+              <Route path="/signup/editorial" render={(props) => <Access {...props} view="Signup" name="Editorial" postFetch={this.postFetch}/>}/>
+              <Route path="/profile/my_profile" render={(props) => <Profile {...props} user={this.state.user} name="My_profile"/>}/>
+              <Route path="/profile/my_books" render={(props) => <Profile {...props} user={this.state.user} name="My_books"/>}/>
+              <Route path="/profile/add_book" render={(props) => <Profile {...props} user={this.state.user} name="Add_book"/>}/>
+              <Route path="/signup" render={(props) => <Access {...props} view="Signup" postFetch={this.postFetch}/>}/>
+              <Route path="/categorias" render={(props) => <Categorias {...props} user={this.state.user} getFetch={this.getFetch}/>}/>
+              <Route path="/book/:ISBN" render={(props) => <FichaLibro {...props}  user={this.state.user} getFetch={this.getFetch}/>}/>
+              <Route path="/login" render={(props) => <Access {...props} postFetch={this.postFetch} changeAppState={this.changeAppState}/>}/>
+              <Route path="/profile" render={(props) => <Profile {...props} user={this.state.user} postFetch={this.postFetch}/>}/>
+              <Route path="/" render={(props) => <Home {...props} user={this.state.user} getFetch={this.getFetch}/>}/>
             </Switch>
         </Router>
     );

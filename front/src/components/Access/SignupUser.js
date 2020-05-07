@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom';
 import '../../css/pseudoElement.css';
 
@@ -8,6 +9,7 @@ export default class SignupUser extends React.Component {
     super(props);
     this.state = {
       name : "",
+      username: "",
       email : "",
       tel : "",
       psd : "",
@@ -15,21 +17,38 @@ export default class SignupUser extends React.Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    if(this.state.name.trim() === "" || this.state.email.trim() === "" || this.state.tel === "" || this.state.psd === "" 
-      || this.state.loc === ""){
+    if(this.state.name.trim() === "" || this.state.username.trim() === "" || this.state.email.trim() === "" || this.state.tel === "" 
+    || this.state.psd === "" || this.state.loc === ""){
         alert("Debe rellenar todos los campos para registrarte");
     }else{
         let paramsToUpdate = {
-            name : this.state.name.trim(),
+            nombre : this.state.name.trim(),
+            username: this.state.username.trim(),
             email : this.state.email.trim(),
-            tel : this.state.tel.trim(),
-            psd : this.state.psd,
-            loc : this.state.loc.trim()
+            telefono : this.state.tel.trim(),
+            pwd : this.state.psd,
+            loc: this.state.loc.trim()
         }
-        // fetch con paramsToUpdate
-    }
+        const res = await this.props.postFetch("UserRegisterServlet",paramsToUpdate)
+        if (res.login === "incorrecto"){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error a la hora de crear el usuario, por favor, comprueba que los datos sean validos.'
+          })
+        }else{
+          Swal.fire({
+            icon: 'success',
+            title: 'Usuario creado correctamente',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          this.props.history.push("/login");
+          }  
+        
+      }
   }
 
   handleChange = (e)=> {
@@ -62,6 +81,10 @@ export default class SignupUser extends React.Component {
         <label className="w-100 font-weight-normal" for="name">Nombre:</label><br/>
         <input className="mb-3 p-2 w-100" style={styles.input__user} type="text" id="name" name="name" 
         placeholder="Introduce tu nombre" onChange={(e) => this.handleChange(e)}/><br/>
+
+        <label className="w-100 font-weight-normal" for="username">Nombre de usuario:</label><br/>
+        <input className="mb-3 p-2 w-100" style={styles.input__user} type="text" id="username" name="username" 
+        placeholder="Introduce tu nombre de usuario" onChange={(e) => this.handleChange(e)}/><br/>
 
         <label className="w-100 font-weight-normal" for="email">Email:</label><br/>
         <input className="mb-3 p-2 w-100" style={styles.input__user} type="email" id="email" name="email" 

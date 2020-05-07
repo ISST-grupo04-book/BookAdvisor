@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,Row,Col,Image} from 'react-bootstrap';
+import {Container,Row,Col,Image, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import '../../css/pseudoElement.css';
 
@@ -35,7 +35,7 @@ export default class Aside extends React.Component {
                 </Row>
                 <Row className="mx-0 mb-4">
                     <Col className="px-0">
-                        <Link className="p-2 w-100 h-100 d-block text-center rounded button__hover" style={styles.book__button} to="#">¡Conseguir libro!</Link>
+                        <Button className="p-2 w-100 h-100 d-block text-center rounded" style={styles.book__button} disabled>¡Conseguir libro!</Button>
                     </Col>
                 </Row>
                 <Row className="mx-0 mb-2">

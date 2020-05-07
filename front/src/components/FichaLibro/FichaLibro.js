@@ -27,7 +27,7 @@ export default class FichaLibro extends React.Component {
     return (
       
       <main style={styles.main}>
-        <Nav/>
+        <Nav user={this.props.user}/>
         <Container className="my-0 py-5 px-0">
           <Row className="mx-0">
             <Col xs={4} className="px-0">

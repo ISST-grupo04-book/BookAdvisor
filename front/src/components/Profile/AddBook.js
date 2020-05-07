@@ -1,5 +1,6 @@
 import React from 'react';
-import {Form, Col, Row, Button, Container, InputGroup} from 'react-bootstrap';
+import {Form, Col, Row, Button} from 'react-bootstrap';
+import Swal from 'sweetalert2';
 import '../../css/pseudoElement.css';
 import '../../css/Profile/AddBooks.css'
  
@@ -13,55 +14,44 @@ export default class AddBook extends React.Component{
             editorial: "",
             edicion: "",
             autor: "",
-            categoria: "",
+            categoria: "Narrativa",
             formato: "",
             foto: "",
             descripcion: ""
         };
-        this.handleTitulo = this.handleTitulo.bind(this);
-        this.handleISBN = this.handleISBN.bind(this);
-        this.handleEditorial = this.handleEditorial.bind(this);
-        this.handleEdicion = this.handleEdicion.bind(this);
-        this.handleAutor = this.handleAutor.bind(this);
-        this.handleCategoria = this.handleCategoria.bind(this);
-        this.handleFormato = this.handleFormato.bind(this);
-        this.handleFoto = this.handleFoto.bind(this);
-        this.handleDescripcion = this.handleDescripcion.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-    //Métodos para capturar los cambios de evento de cada input:
-    handleTitulo(e1){
-        this.setState({titulo : e1.curretTarget.value});
-    }
-    handleISBN(e2){
-        this.setState({ISBN : e2.curretTarget.value});
-    }
-    handleEditorial(e3){
-        this.setState({editorial : e3.curretTarget.value});
-    }
-    handleEdicion(e4){
-        this.setState({edicion : e4.curretTarget.value});
-    }
-    handleAutor(e5){
-        this.setState({autor : e5.curretTarget.value});
-    }
-    handleCategoria(e6){
-        this.setState({categoria : e6.curretTarget.value});
-    }
-    handleFormato(e7){
-        this.setState({formato : e7.curretTarget.value});
-    }
-    handleFoto(e8){
-        this.setState({foto : e8.curretTarget.value});
-    }
-    handleDescripcion(e9){
-        this.setState({descripcion : e9.curretTarget.value});
+    postFetch = async(servlet="",data) => {
+        const URI = "http://localhost:8080/BookAdvisor/"; 
+        let myInit = { method: "POST",
+                      body: JSON.stringify(data)
+                    };
+        
+        const response = await fetch(URI+servlet,myInit);
+        const responseJson = await response.json();
+        const parseJson = await JSON.parse(responseJson);
+        return (parseJson);
+        
+      }
+    handleChange = (e)=> {
+        this.setState({[e.target.name] : e.target.value})
+      }
+    
+    handleFoto = async (e)=> {
+        const fd = new FormData()
+        fd.append('image',e.target.files[0])
+        const URI = "https://api.imgbb.com/1/upload?key=b30e9fdefc063109466c47f428b4cb53"; 
+        let myInit = { method: "POST",
+                      body: fd
+                    };
+        const response = await fetch(URI,myInit);
+        const responseJson = await response.json();
+        this.setState({foto:responseJson.data.url});
+        
     }
 
     //Método submit
-    handleSubmit(e){
+    handleSubmit = async (e) => {
         e.preventDefault();
         if(this.state.titulo.trim() === "" || this.state.ISBN.trim() === "" || this.state.editorial.trim() === "" || 
         this.state.edicion.trim() === "" || this.state.autor.trim() === "" || this.state.categoria.trim() === "" || 
@@ -77,7 +67,22 @@ export default class AddBook extends React.Component{
                 categoria: this.state.categoria.trim(),
                 formato: this.state.formato.trim(),
                 foto: this.state.foto.trim(),
-                descripcion: this.state.descripcion.trim()
+                resena: this.state.descripcion.trim(),
+            }
+            const res = await this.postFetch("AddBookInfoServlet",paramsToUpdate);
+            if (res.creacion === "incorrecta"){
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Ha habido algún error durante la creación. Por favor, vuelva a intentarlo'
+                })
+              }else{
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Creación realizada con éxito.',
+                  showConfirmButton: false,
+                  timer: 2000
+                })
             }
         }
     }
@@ -121,11 +126,11 @@ export default class AddBook extends React.Component{
                 <Form.Row>
                     <Col>
                         <p style={styles.text}>Título</p>
-                        <Form.Control size="lg" type="text" style={styles.input} onChange={(e1) =>this.handleTitulo(e1)}/>
+                        <Form.Control size="lg" type="text" style={styles.input} name="titulo" onChange={(e) => this.handleChange(e)}/>
                     </Col>
                     <Col>
                         <p style={styles.text}>ISBN</p>
-                        <Form.Control size="lg" type="text" style={styles.input} onChange={(e2) =>this.handleISBN(e2)}/>
+                        <Form.Control size="lg" type="text" style={styles.input} name="ISBN" onChange={(e) => this.handleChange(e)}/>
                     </Col>
                 </Form.Row>
 
@@ -133,11 +138,11 @@ export default class AddBook extends React.Component{
                 <Form.Row>
                     <Col>
                         <p style={styles.text}>Editorial</p>
-                        <Form.Control size="lg" type="text" style={styles.input} onChange={(e3) =>this.handleEditorial(e3)}/>
+                        <Form.Control size="lg" type="text" style={styles.input} name="editorial" onChange={(e) => this.handleChange(e)}/>
                     </Col>
                     <Col>
                         <p style={styles.text}>Edición</p>
-                        <Form.Control size="lg" type="text" style={styles.input} onChange={(e4) => this.handleEdicion(e4)}/>
+                        <Form.Control size="lg" type="text" style={styles.input} name="edicion" onChange={(e) => this.handleChange(e)}/>
                     </Col>
                 </Form.Row>
 
@@ -145,12 +150,12 @@ export default class AddBook extends React.Component{
                 <Form.Row>
                     <Col>
                         <p style={styles.text}>Autor</p>
-                        <Form.Control size="lg" type="text" style={styles.input} onChange={(e5) => this.handleAutor(e5)}/>
+                        <Form.Control size="lg" type="text" style={styles.input} name="autor" onChange={(e) => this.handleChange(e)}/>
                     </Col>
                     <Col>
                         <p style={styles.text}>Categoría</p>
-                        <Form.Control as="select" placeholder="Seleccionar" size="lg" style={styles.input} 
-                        onChange={(e6) =>this.handleCategoria(e6)}>
+                        <Form.Control as="select" placeholder="Seleccionar" size="lg" style={styles.input}  name="categoria"
+                        onChange={(e) => this.handleChange(e)}>
                             <option>Narrativa</option>
                             <option>No ficción</option>
                             <option>Poesía</option>
@@ -167,18 +172,20 @@ export default class AddBook extends React.Component{
                 <Form.Row>
                     <Col>
                         <p style={styles.text}>Formato</p>
-                        <Form.Control size="lg" type="text" style={styles.input} onChange={(e7) => this.handleFormato(e7)}/>
+                        <Form.Control size="lg" type="text" style={styles.input} name="formato"  onChange={(e) => this.handleChange(e)}/>
                     </Col>
 
                     <Col>
                     <p style={styles.text}>Subir Fotografía</p>
-                     <InputGroup className="picture">
-                        <Form.Control size="lg" type="text" style={styles.input}/>
-                            <InputGroup.Append>
-                                <Button id="addpicture" variant="outline-secondary" style={styles.link} 
-                                onChange={(e8) =>this.handleFoto(e8)}>Añadir foto</Button>
-                            </InputGroup.Append>
-                    </InputGroup>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01" accept="image/*" onChange={(e) => this.handleFoto(e)}
+                            disabled={this.state.foto !== ""}/>
+                            <label class="custom-file-label" for="inputGroupFile01">{this.state.foto !== "" ? "Imagen cargada" :
+                            "Selecciona imagen"}</label>
+                        </div>
+                    </div>
                     </Col>
                 </Form.Row>
 
@@ -186,13 +193,13 @@ export default class AddBook extends React.Component{
                 <Form.Row>
                     <Col>
                         <p style={styles.text}>Descripción</p>
-                        <Form.Control size="lg" type="text" style={{height:'150px'}} 
-                        onChange={(e9) => this.handleDescripcion(e9)}/>
+                        <Form.Control size="lg" type="text" style={{height:'150px'}} name="descripcion"
+                        onChange={(e) => this.handleChange(e)}/>
                     </Col>
                 </Form.Row>
 
                 <span/>
-                <Button type="submit" id="submit"  style={styles.button} onClick={(e) => this.handleSubmit(e)}><p style={styles.text}>Enviar libro a revisión</p></Button>
+                <Button type="submit" id="submit"  style={styles.button} onClick={(e) => this.handleSubmit(e)}><p style={styles.text}>Enviar libro</p></Button>
             </Form.Group >
 
             </div>

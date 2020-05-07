@@ -1,6 +1,5 @@
 import React from 'react';
-import {Row,Col,Badge} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Row,Col,Badge, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import '../../css/pseudoElement.css';
@@ -9,9 +8,18 @@ export default class Section extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      valoracion: 4
+      valoracion: null
     } 
   };
+
+  componentDidMount(){
+    this.setState({valoracion:this.props.book.valoracion})
+  }
+  componentWillUnmount(){
+    //Aqui va el put
+  }
+
+
 
   reviewStars(num) {
     let stars = [];
@@ -54,7 +62,7 @@ export default class Section extends React.Component {
               <Col className="px-0">
                   <h1 style={styles.book__title}>{this.props.book.titulo}</h1>
                   <h4 className="font-weight-normal">{this.props.book.autor}</h4>
-                  <h6 className="mt-3 font-weight-normal">Valoración media: {this.reviewStars(this.props.book.valoracion)}</h6>
+                  <h6 className="mt-3 font-weight-normal">Valoración media: {this.reviewStars(4)}</h6>
                   <h6 className="mt-3 font-weight-normal">Tu valoración: {this.reviewStars(this.state.valoracion)}
                     <button className="ml-2 py-0 px-2 d-inline-block btn btn-outline-secondary" 
                       onClick={() => this.setState({valoracion: this.state.valoracion >0 ? this.state.valoracion-1 : this.state.valoracion})}>-</button>
@@ -65,8 +73,7 @@ export default class Section extends React.Component {
             </Row>
             <Row className="mx-0 my-3">
               <Col className="px-0">
-                  <Badge pill className="mr-2 px-4 py-1" style={styles.book__badge}>Ficción</Badge>
-                  <Badge pill className="px-4 py-1" style={styles.book__badge}>Aventuras</Badge>
+                <Badge pill className="mr-2 px-4 py-1" style={styles.book__badge}>{this.props.book.categoria}</Badge>
               </Col>
             </Row>
             <Row className="mx-0">
@@ -76,7 +83,7 @@ export default class Section extends React.Component {
             </Row>
             <Row className="mx-0">
               <Col xs={6} className="px-0">
-                <Link className="p-2 w-100 h-100 d-block text-center rounded button__hover" style={styles.edit__button} to="#">Añadir Reseña Editorial</Link>
+                <Button className="p-2 w-100 h-100 d-block text-center rounded" style={styles.edit__button} disabled>Añadir Reedición</Button>
               </Col>
             </Row>
         </React.Fragment>

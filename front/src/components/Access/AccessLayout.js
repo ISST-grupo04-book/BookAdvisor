@@ -44,22 +44,22 @@ export default class Access_layout extends React.Component {
         view = <NewPassword/>
         break;
       case "User":
-        view = <SignupUser/>
+        view = <SignupUser postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       case "Library":
-        view = <SignupLibrary/>
+        view = <SignupLibrary postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       case "Bookshop":
-        view = <SignupBookshop/>
+        view = <SignupBookshop postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       case "Editorial":
-        view = <SignupEditorial/>
+        view = <SignupEditorial postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       default:
         if (this.props.view === "Signup"){
-          view = <Signup/>
+          view = <Signup postFetch={this.props.postFetch} history={this.props.history}/>
         }else{
-          view = <Login postFetch={this.props.postFetch}/>
+          view = <Login postFetch={this.props.postFetch} changeAppState={this.props.changeAppState} history={this.props.history}/>
         }
         break;
     }

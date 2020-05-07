@@ -4,6 +4,7 @@ import '../../css/Home/Home.css';
 import AsideRight from './AsideRight';
 import Center from './Carousel';
 import ListaLibros from './ListaLibros';
+import Nav from '../Nav';
 
 export default class Home extends React.Component{
   
@@ -22,6 +23,7 @@ export default class Home extends React.Component{
     render(){
         return (
           <main className="Home">
+            <Nav user={this.props.user}/>
             <Container className="my-0 py-5 px-0">
                 <Row>
                 <Col>

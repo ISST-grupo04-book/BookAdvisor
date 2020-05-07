@@ -1,22 +1,23 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import {Container,Row,Col} from 'react-bootstrap';
 import AsideProfile from './AsideProfile';
 import SectionProfile from './SectionProfile';
 import SectionMybooks from './SectionMybooks';
 import AddBook from './AddBook';
+import Nav from '../Nav';
 
 export default class ProfileLayout extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
+      user:{}
     }
   }
   
   componentDidMount(){
-    //fetch get con los datos del user
-    //Cambiar a json
-    //meterlo en el state
+      this.setState({user:this.props.user})
   }
 
   render(){
@@ -49,20 +50,28 @@ export default class ProfileLayout extends React.Component {
         image : "/img/harrypotter.jpg" 
       }
     ]
-
+    if(this.props.user === null){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Parece que tu sesión ha daducado, por favor, vuelva a iniciar sesión',
+        showConfirmButton: true,
+      })
+      this.props.history.push("/login")
+    }
     let view = null;
     switch (this.props.name) {
       case "My_profile":
-        view = <SectionProfile/>
+        view = <SectionProfile user={this.state.user}/>
         break;
       case "My_books":
-        view = <SectionMybooks bookList={bookList}/>
+        view = <SectionMybooks bookList={bookList} user={this.state.user}/>
         break;
       case "Add_book":
-        view = <AddBook/>
+        view = <AddBook user={this.state.user} postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       default:
-          view = <SectionProfile/>
+          view = <SectionProfile user={this.state.user}/>
           break;
     }
 
@@ -73,6 +82,7 @@ export default class ProfileLayout extends React.Component {
     }
     return (
         <main className='h-auto min-vh-100'style={styles.main}>
+        <Nav/>
         <Container fluid className="p-0 h-auto min-vh-100">
           <Row className="m-0 h-100 min-vh-100">
             <Col xs={2} className="p-0">
