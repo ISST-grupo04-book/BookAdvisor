@@ -41,7 +41,8 @@ export default class Mybooks extends React.Component {
                     <button className="p-2 mr-3 w-25 rounded linkProfile__hover buttonProfile__focus" style={styles.link}>
                         {this.props.disponible ? "Pasar a intercambio" :"Pasar a disponible"}
                     </button>
-                    <button className="p-2 w-25 font-weight-light rounded buttonProfile__hover buttonProfile__focus" style={styles.button}>Eliminar</button>
+                    <button className="p-2 w-25 font-weight-light rounded buttonProfile__hover buttonProfile__focus" 
+                    style={styles.button} onClick={() => this.props.delete()}>Eliminar</button>
                 </div>
             </div>
         </form>

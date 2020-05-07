@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {Navbar,Nav,Button,FormControl,Form,Image} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch,faUserCircle,faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import '../css/Nav.css';
 
 
 //import '../css/Nav.css';
 export default class Navigator extends React.Component {
+      
     render(){
         return (
             <Navbar className="navbar--color" expand="lg">
@@ -21,14 +21,18 @@ export default class Navigator extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/"><p id = "inicio">Inicio</p></Nav.Link>
-                        <Nav.Link href="/categorias"><p id= "categorias">Categorías</p></Nav.Link>
+                        <Link className="mx-2" style={{textDecoration:"none"}} to="/"><p id = "inicio">Inicio</p></Link>
+                        <Link className="mx-2" style={{textDecoration:"none"}} to="/categorias"><p id= "categorias">Categorías</p></Link>
                     </Nav>
                     <Form inline>
                         <Button className = "button_search"><FontAwesomeIcon icon={faSearch}/></Button>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     </Form>
-                    <Link to="/login"><Button className ="button_user"><FontAwesomeIcon icon={faUserCircle}/></Button></Link>
+                    <Link to={this.props.user === null ? "/login" : "/profile"}>
+                        <Button className ="button_user">
+                            <FontAwesomeIcon icon={this.props.user === null ? faSignInAlt : faUserCircle}/>
+                        </Button>
+                    </Link>
                 </Navbar.Collapse>
             </Navbar>
         )

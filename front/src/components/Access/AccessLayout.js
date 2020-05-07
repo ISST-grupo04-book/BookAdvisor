@@ -5,6 +5,7 @@ import SignupUser from './SignupUser.js';
 import SignupLibrary from './SignupLibrary.js';
 import SignupBookshop from './SignupBookshop.js';
 import SignupEditorial from './SignupEditorial.js';
+import NewPassword from './NewPassword.js';
 
 import {Container,Row,Col,Image} from 'react-bootstrap';
 
@@ -39,24 +40,26 @@ export default class Access_layout extends React.Component {
 
     let view = null;
     switch (this.props.name) {
+      case "Psd":
+        view = <NewPassword/>
+        break;
       case "User":
-        view = <SignupUser/>
-        console.log("user");
+        view = <SignupUser postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       case "Library":
-        view = <SignupLibrary/>
+        view = <SignupLibrary postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       case "Bookshop":
-        view = <SignupBookshop/>
+        view = <SignupBookshop postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       case "Editorial":
-        view = <SignupEditorial/>
+        view = <SignupEditorial postFetch={this.props.postFetch} history={this.props.history}/>
         break;
       default:
         if (this.props.view === "Signup"){
-          view = <Signup/>
+          view = <Signup postFetch={this.props.postFetch} history={this.props.history}/>
         }else{
-          view = <Login/>
+          view = <Login postFetch={this.props.postFetch} changeAppState={this.props.changeAppState} history={this.props.history}/>
         }
         break;
     }

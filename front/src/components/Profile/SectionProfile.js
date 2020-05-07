@@ -3,6 +3,21 @@ import {Link} from 'react-router-dom'
 import '../../css/pseudoElement.css';
 
 export default class SectionProfile extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+      }
+    
+
+      handleDelete = () => {
+        if(window.confirm("¿Estás seguro de querer eliminar tu cuenta? Una vez borrado no se podrá recuperar")){
+            // fetch con delete 
+        }
+      }
+      
+
   render(){
     const styles = {
         section__wrapper : {
@@ -33,15 +48,16 @@ export default class SectionProfile extends React.Component {
                         <Link className='p-2 text-center rounded linkProfile__hover' style={styles.link} aria-pressed='true'>Editar perfil</Link>
                     </div>
                     <div className="w-100">
-                        <p className='px-4 font-weight-light'>Antonio García</p> 
-                        <p className='px-4 font-weight-light'>@antioniog29</p> 
-                        <p className='px-4 font-weight-light'>jesusper89@gmail.com</p> 
-                        
+                        <p className='px-4 font-weight-light'>Nombre: {this.props.user.nombre}</p> 
+                        <p className='px-4 font-weight-light'>Nombre de usuario: {this.props.user.username}</p> 
+                        <p className='px-4 font-weight-light'>Email: {this.props.user.email}</p> 
+                        <p className='px-4 font-weight-light'>Telefono: {this.props.user.telefono}</p> 
                     </div>
                     <h4 className="my-4 font-weight-normal">Tipo de perfil: <p className='d-inline'>Usuario</p></h4>
                     <div className='d-flex justify-content-end align-items-center'>
-                        <Link className='mr-3 p-2  text-center rounded linkProfile__hover' style={styles.link}>Cambiar contraseña</Link>
-                        <button className='p-2 font-weight-light rounded buttonProfile__hover buttonProfile__focus' style={styles.button} >Eliminar cuenta</button>
+                        <Link className='mr-3 p-2  text-center rounded linkProfile__hover' style={styles.link} to="/signup/newPassword">Cambiar contraseña</Link>
+                        <button className='p-2 font-weight-light rounded buttonProfile__hover buttonProfile__focus' 
+                        style={styles.button} onClick={() => this.handleDelete()}>Eliminar cuenta</button>
                     </div>
                 </form>
             </div>

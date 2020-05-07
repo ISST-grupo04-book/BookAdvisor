@@ -37,11 +37,9 @@ export default class Signup extends React.Component {
     }
 
     return (
-      <div className="p-5 h-75 w-50 d-flex flex-column justify-content-start align-items-start bg-white" style={styles.signup__wrapper}>
+      <div className="p-5 h-auto w-50 d-flex flex-column justify-content-start align-items-start bg-white" style={styles.signup__wrapper}>
         <h2 className="mb-3 w-100 font-weight-normal">Registrarse</h2>
-        <form className="w-100 h-100 d-flex flex-column justify-content-between align-items-start" action=
-        {this.state.user ? '/signup/user' : this.state.library ? '/signup/library' : this.state.bookshop ?'/signup/bookshop' : 
-        this.state.editorial ? '/signup/editorial' : ''}>
+        <form className="w-100 h-100 d-flex flex-column justify-content-between align-items-start">
             <input className="d-none"  type="checkbox" id="user" name="user" 
               onChange={() => 
               this.setState({
@@ -50,7 +48,7 @@ export default class Signup extends React.Component {
                 bookshop : false,
                 editorial : false})}/>
 
-            <label className="mb-0 mx-3 p-3 rounded" 
+            <label className="mx-3 my-2 p-3 rounded" 
               style={{...styles.checkbox__label, ...{border: this.state.user ? '1px solid rgb(119, 93, 255)' : '0px'}}} for="user">
 
               <div className="checkbox__content">
@@ -68,7 +66,7 @@ export default class Signup extends React.Component {
                 bookshop : false,
                 editorial : false})}/>
             
-            <label className="mb-0 mx-3 p-3 rounded" 
+            <label className="mx-3 my-2 p-3 rounded" 
             style={{...styles.checkbox__label, ...{border: this.state.library ? '1px solid rgb(119, 93, 255)' : '0px'}}} for="library">
 
               <div className="checkbox__content">
@@ -86,7 +84,7 @@ export default class Signup extends React.Component {
                 bookshop : !this.state.bookshop,
                 editorial : false})}
             />
-            <label className="mb-0 mx-3 p-3 rounded" 
+            <label className="mx-3 my-2 p-3 rounded" 
             style={{...styles.checkbox__label, ...{border: this.state.bookshop ? '1px solid rgb(119, 93, 255)' : '0px'}}} for="bookshop">
 
               <div className="checkbox__content">
@@ -104,7 +102,7 @@ export default class Signup extends React.Component {
                 bookshop : false,
                 editorial : !this.state.editorial})}
             />
-            <label className="mb-0 mx-3 p-3 rounded" 
+            <label className="mx-3 my-2 p-3 rounded" 
             style={{...styles.checkbox__label, ...{border: this.state.editorial ? '1px solid rgb(119, 93, 255)' : '0px'}}} for="editorial">
 
               <div className="checkbox__content">
@@ -114,11 +112,13 @@ export default class Signup extends React.Component {
               </div>
             </label>
 
-            <input className="p-2 w-100 font-weight-light rounded button__hover" style={styles.input__submit} type="submit" value="Siguiente"/>
+            <Link className="mt-2 p-2 w-100 font-weight-light text-center rounded button__hover" style={styles.input__submit} to=
+            {this.state.user ? '/signup/user' : this.state.library ? '/signup/library' : this.state.bookshop ?'/signup/bookshop' : 
+            this.state.editorial ? '/signup/editorial' : '#'}>Siguiente</Link>
         </form>
-        <div className="w-100 d-flex justify-content-between align-items-center">
-          <Link className="my-2 link__hover" style={styles.link} key="key3" to="/login">Iniciar sesión</Link>
-          <Link className="my-2 link__hover" style={styles.link} key="key4" to="/">Inicio</Link>
+        <div className="mt-3 w-100 d-flex justify-content-between align-items-center">
+          <Link className="link__hover" style={styles.link} key="key3" to="/login">Iniciar sesión</Link>
+          <Link className="link__hover" style={styles.link} key="key4" to="/">Inicio</Link>
         </div>
       </div>
     );
