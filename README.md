@@ -24,7 +24,7 @@ Para instalarlo y usarlo solo tienes que:
 * Crearte un servidor TomCat si no lo tienes
 * Configurar el hibernate.cfg con tus rutas personalizadas
 * Encontrar la ruta de la base de datos del programa
-* Arrancar la base de datos con el comando en tu terminal: java -jar <rutacompleta>/h2-1.4.197.jar
+* Arrancar la base de datos con el comando en tu terminal: java -jar rutacompleta/h2-1.4.197.jar
 * Arrancar la aplicación React con npm start desde la carpeta de front-end
 
 ## Construido con 🛠️
